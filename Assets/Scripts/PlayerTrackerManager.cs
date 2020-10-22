@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class PlayerTrackerManager : MonoBehaviour
 {
     public GameStatusManager gameStatusManager;
+    public EnvironmentCharcteristicsSetter environmentCharcteristicsSetter;
+
+    public EnemyWavesManager enemyWavesManager;
     public CursorManager cursorManager;
     public float playerHealth;
     public float minPlayerHealth, maxPlayerHealth;
@@ -16,6 +19,10 @@ public class PlayerTrackerManager : MonoBehaviour
 
     public TextMeshProUGUI destoyedTanksNumberTextTMP;
     public TextMeshProUGUI destoyedObstaclesNumberTextTMP;
+
+    public TextMeshProUGUI smallHealthIncreasePurchaseTMP, largeHealthIncreasePurchaseTMP;
+    public string salvagedSteelText = " Salvaged Steel";
+    public TextMeshProUGUI gameOverWavesSurvivedTMP, gameOverlocationAndYearTMP, gameOverTanksDestroyedTMP, gameOverObstaclesDestroyedTMP;
     public Slider playerHealthbar;
     public TextMeshProUGUI playerHealthNumberTMP;
 
@@ -31,6 +38,8 @@ public class PlayerTrackerManager : MonoBehaviour
     {
         //startingPlayerHealth = playerhealth;
         UpdateHealthBarUI();
+        largeHealthIncreasePurchaseTMP.text = largeHealthIncreasePurchase.ToString("0") + salvagedSteelText;
+        smallHealthIncreasePurchaseTMP.text = smallHealthIncreasePurchase.ToString("0") + salvagedSteelText;
     }
 
     void Update()
@@ -100,12 +109,21 @@ public class PlayerTrackerManager : MonoBehaviour
         if(playerHealth <= minPlayerHealth)
         {
             cursorManager.ActivateCursor();
+            FinalStatisticUpdate();
             gameStatusManager.isPaused = true;
             gameOverPanel.SetActive(true);
             Debug.Log("Player destroyed");
         }
     }
 
+    void FinalStatisticUpdate()
+    {
+        gameOverlocationAndYearTMP.text = "In " + environmentCharcteristicsSetter.chosenLocationAndYear; 
+        int wavesSurvived = enemyWavesManager.currentWave - 1;
+        gameOverWavesSurvivedTMP.text = wavesSurvived.ToString("0");
+        gameOverObstaclesDestroyedTMP.text = currentObstaclesDestroyed.ToString("0");
+        gameOverTanksDestroyedTMP.text = currentEnemyTanksDestroyed.ToString("0");
+    }
     void MakeSalvagedSteelNotGoUnder0()
     {
         if (currentSalvagedSteel <= 0)

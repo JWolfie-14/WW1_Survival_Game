@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleHealth: 100
-  minQuantityOfSalvagedSteel: 0
-  maxQuantityOfSalvagedSteel: 0
+  minQuantityOfSalvagedSteel: 40
+  maxQuantityOfSalvagedSteel: 46
   tankCarcass: {fileID: 0}
   isTank: 0
 --- !u!1 &1991361925625999514

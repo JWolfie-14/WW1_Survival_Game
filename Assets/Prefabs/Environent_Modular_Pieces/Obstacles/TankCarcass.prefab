@@ -155,8 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleHealth: 50
-  minQuantityOfSalvagedSteel: 70
-  maxQuantityOfSalvagedSteel: 81
-  parentEnemyTank: {fileID: 0}
+  minQuantityOfSalvagedSteel: 50
+  maxQuantityOfSalvagedSteel: 56
   tankCarcass: {fileID: 0}
   isTank: 0
