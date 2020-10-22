@@ -116,4 +116,12 @@ public class TankMovement : MonoBehaviour
                 }
         }
     
+    void OnCollisionEnter(Collision other) 
+    {
+         if (other.gameObject.CompareTag("Obstacles"))
+         {
+             other.gameObject.GetComponent<ObstaclesManager>().ObstacleTakenDamage(100);
+         }
+    }
+    
 }
