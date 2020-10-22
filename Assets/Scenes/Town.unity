@@ -29090,7 +29090,7 @@ MonoBehaviour:
   movementSpeed: 12.5
   rotationSpeed: 35
   cameraTarget: {fileID: 916075256}
-  cameraOrbitSpeed: 30
+  cameraOrbitSpeed: 45
   leftTread: {fileID: 919132147626405242}
   rightTread: {fileID: 919132148180547939}
 --- !u!64 &7003506106747148865

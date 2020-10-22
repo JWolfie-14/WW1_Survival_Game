@@ -64,7 +64,7 @@ public class EnemyWavesManager : MonoBehaviour
             currentTimeLeft -= 1 * Time.deltaTime;
             timerTextTMP.text = currentTimeLeft.ToString("0");
             Debug.Log(currentTimeLeft);
-            if(currentTimeLeft<=0 && !spawnAI)
+            if(currentTimeLeft <= 0.1 && !spawnAI)
             {
                 isCountdownActive = false;
                 spawnAI = true;
