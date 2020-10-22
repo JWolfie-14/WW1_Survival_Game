@@ -14536,9 +14536,9 @@ Transform:
   - {fileID: 2109763637}
   - {fileID: 1713912216}
   - {fileID: 384040322}
+  - {fileID: 757185086}
   - {fileID: 13653954}
   - {fileID: 3159292260889658970}
-  - {fileID: 757185086}
   - {fileID: 1233064701}
   - {fileID: 2050025404}
   - {fileID: 752641682}
@@ -21722,7 +21722,7 @@ MonoBehaviour:
   isTabMenuActive: 0
   removeCursor: {fileID: 1287562365}
   player: {fileID: 7003506106747148862}
-  thirdPersonCam: {fileID: 961005106}
+  thirdPersonCam: {fileID: 0}
 --- !u!1 &1396563449
 GameObject:
   m_ObjectHideFlags: 0
