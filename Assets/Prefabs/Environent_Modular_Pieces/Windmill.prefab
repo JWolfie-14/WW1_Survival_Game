@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5322460634496869740}
   - component: {fileID: 2733591598478768738}
   - component: {fileID: 203278985863278297}
-  - component: {fileID: 1714171801723160582}
   m_Layer: 10
   m_Name: Blades
   m_TagString: Untagged
@@ -27,11 +26,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203278985863278298}
-  m_LocalRotation: {x: -6.123234e-17, y: -6.123234e-17, z: 6.123234e-17, w: 1}
-  m_LocalPosition: {x: 0.00012512207, y: 0.95848775, z: 3.7536786}
+  m_LocalRotation: {x: -0, y: -6.123234e-17, z: 6.123234e-17, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.93125254, y: 1.0738363, z: 1}
   m_Children: []
-  m_Father: {fileID: 7250065811942566157}
+  m_Father: {fileID: 2690076898979641617}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5322460634496869740
@@ -89,7 +88,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203278985863278298}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0f2fc6e8a0606c54fab114f8da7327cb, type: 2}
   m_CullingMode: 0
@@ -100,19 +99,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1714171801723160582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203278985863278298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202b521e8cac228408ba9cee77ab7dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 45
 --- !u!1 &4623732511279240052
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +129,7 @@ Transform:
   m_LocalPosition: {x: -4.7199993, y: 0, z: -4.215061}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
-  - {fileID: 3429547137249889207}
+  - {fileID: 2690076898979641617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -208,3 +194,34 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -112859248700104106, guid: c8d0e56ead65b724dbeffd00d5e465cc, type: 3}
+--- !u!1 &7281895524399225942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2690076898979641617}
+  m_Layer: 10
+  m_Name: BladesController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2690076898979641617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281895524399225942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.095, y: 0.958, z: 3.728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3429547137249889207}
+  m_Father: {fileID: 7250065811942566157}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
