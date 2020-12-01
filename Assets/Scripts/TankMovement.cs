@@ -5,6 +5,7 @@ using UnityEngine;
 public class TankMovement : MonoBehaviour
 {
     public GameStatusManager gameStatusManager;
+    public PlayerTrackerManager playerTrackerManager;
     public float movementSpeed;
     private float internalMovementSpeed;
     private float rotationInput, moveInput, cameraRotationInput;
@@ -12,9 +13,13 @@ public class TankMovement : MonoBehaviour
     public GameObject cameraTarget;
     public float cameraOrbitSpeed;
     Rigidbody rb;
-
     public GameObject leftTread, rightTread;
     Animator leftTreadAnim, rightTreadAnim;
+    public float mudPuddleMultiplier = 2;
+    public float collisonDistance = 3f;
+    public bool forwardMovementWanted = true;
+    public bool backwardMovementWanted = false;
+    
     // Update is called once per frame
     void Start() 
     {
@@ -31,6 +36,8 @@ public class TankMovement : MonoBehaviour
             moveInput = Input.GetAxis("Vertical");
             rotationInput = Input.GetAxis("Horizontal");
             cameraRotationInput = Input.GetAxis("Mouse X");
+            Debug.Log("forwardMovement: " + forwardMovementWanted);
+            Debug.Log("backwardmovement: " + backwardMovementWanted);
             //Debug.Log(rotationInput);
             TankMovementAndAnimation();
             CameraOrbit();
@@ -39,6 +46,8 @@ public class TankMovement : MonoBehaviour
 
     void TankMovementAndAnimation()
     {
+        
+        //rotation of tank
         if((rotationInput != 0) && (moveInput == 0))
         {
             transform.Rotate(new Vector3(0,0,rotationInput*rotationSpeed)*Time.deltaTime);
@@ -58,33 +67,56 @@ public class TankMovement : MonoBehaviour
         
             }
         }
+        if (rotationInput == 0 && moveInput == 0)
+        {
+            DeactiveTreadAnimation();
+        }
+        if (!forwardMovementWanted || !backwardMovementWanted)
+        {
+            DeactiveTreadAnimation();
+        }
 
         if(moveInput != 0)
         {
-            transform.Translate(new Vector3(moveInput * internalMovementSpeed, 0, 0)*Time.deltaTime);
-            //rb.velocity = transform.right * moveInput * movementSpeed;
             if (moveInput > 0)
             {
-                leftTreadAnim.SetBool("isTankMovingForward", true);
-                leftTreadAnim.SetBool("isTankMovingBackwards", false);
-                rightTreadAnim.SetBool("isTankMovingForward", true);
-                rightTreadAnim.SetBool("isTankMovingBackwards", false);
+                if (forwardMovementWanted)
+                {
+                    TankForwardAndBackward();
+                    leftTreadAnim.SetBool("isTankMovingForward", true);
+                    leftTreadAnim.SetBool("isTankMovingBackwards", false);
+                    rightTreadAnim.SetBool("isTankMovingForward", true);
+                    rightTreadAnim.SetBool("isTankMovingBackwards", false);
+                }
             }
-            else{
-                leftTreadAnim.SetBool("isTankMovingForward", false);
-                leftTreadAnim.SetBool("isTankMovingBackwards", true);
-                rightTreadAnim.SetBool("isTankMovingForward", false);
-                rightTreadAnim.SetBool("isTankMovingBackwards", true);
+            
+            if (moveInput < 0)
+            {
+                if (backwardMovementWanted)
+                {
+                    TankForwardAndBackward();
+                    leftTreadAnim.SetBool("isTankMovingForward", false);
+                    leftTreadAnim.SetBool("isTankMovingBackwards", true);
+                    rightTreadAnim.SetBool("isTankMovingForward", false);
+                    rightTreadAnim.SetBool("isTankMovingBackwards", true);
+                }
             }
         }
-        if (rotationInput == 0 && moveInput == 0)
-        {
-            leftTreadAnim.SetBool("isTankMovingForward", false);
-            leftTreadAnim.SetBool("isTankMovingBackwards", false);
-            rightTreadAnim.SetBool("isTankMovingForward", false);
-            rightTreadAnim.SetBool("isTankMovingBackwards", false);
-        }
+        
     }
+
+    void DeactiveTreadAnimation()
+    {
+        leftTreadAnim.SetBool("isTankMovingForward", false);
+        leftTreadAnim.SetBool("isTankMovingBackwards", false);
+        rightTreadAnim.SetBool("isTankMovingForward", false);
+        rightTreadAnim.SetBool("isTankMovingBackwards", false);
+    }
+    void TankForwardAndBackward()
+    {
+        transform.Translate(new Vector3(moveInput * internalMovementSpeed, 0, 0) * Time.deltaTime);
+    }
+
 
     // void TreadAnimation(bool leftForward, bool leftBackward, bool rightForawrd, bool rightBackward)
     // {
@@ -104,7 +136,11 @@ public class TankMovement : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Mud"))
                 {
-                    internalMovementSpeed = internalMovementSpeed / 2;
+                    internalMovementSpeed = internalMovementSpeed / mudPuddleMultiplier;
+                }
+            if (other.gameObject.CompareTag("River"))
+                {
+                    playerTrackerManager.DecreasePlayerHealth(100);
                 }
         }
     
@@ -123,5 +159,4 @@ public class TankMovement : MonoBehaviour
              other.gameObject.GetComponent<ObstaclesManager>().ObstacleTakenDamage(100);
          }
     }
-    
 }

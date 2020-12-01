@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7250065811942566157}
   - component: {fileID: 5150893364685936743}
   - component: {fileID: 8363800563311732356}
-  - component: {fileID: 3301053782531817379}
+  - component: {fileID: 8694316816776343736}
   m_Layer: 10
   m_Name: Windmill
   m_TagString: Environment
@@ -180,8 +180,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &3301053782531817379
-MeshCollider:
+--- !u!136 &8694316816776343736
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -190,10 +190,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -112859248700104106, guid: c8d0e56ead65b724dbeffd00d5e465cc, type: 3}
+  m_Radius: 1.06
+  m_Height: 6
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 2.01}
 --- !u!1 &7281895524399225942
 GameObject:
   m_ObjectHideFlags: 0

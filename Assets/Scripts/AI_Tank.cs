@@ -10,7 +10,7 @@ public class AI_Tank : MonoBehaviour
     private NavMeshAgent nav;
     public GameObject playerTank;
     public Transform frontTankRaycastPosition;
-    public Color noCollsion, playerCollison, enemyCollision, turretRaycasts, environmentCollision;
+    public Color noCollsion, playerCollison, enemyCollision, turretRaycasts, buildingsCollision;
 
     public Transform leftTurretSpawnPoint, rightTurretSpawnPoint;
 
@@ -21,7 +21,7 @@ public class AI_Tank : MonoBehaviour
     bool rotationDirectionSelected;
     bool navActive = true;
     public bool playerInRange;
-    int playerLayer, enemyLayer, environmentLayer, obstacleLayer;
+    int playerLayer, enemyLayer, buildingsLayer, obstacleLayer, boundaryLayer;
     public GameObject shellPrefab;
     public float shellSpeed;
     public float reloadTime = 1.5f;
@@ -32,7 +32,8 @@ public class AI_Tank : MonoBehaviour
         nav  = gameObject.GetComponent<NavMeshAgent>();
         playerLayer = LayerMask.NameToLayer("Player");
         enemyLayer = LayerMask.NameToLayer("Enemy");
-        environmentLayer = LayerMask.NameToLayer("Environment");
+        buildingsLayer = LayerMask.NameToLayer("Buildings");
+        boundaryLayer = LayerMask.NameToLayer("Boundary");
     }
     
     
@@ -69,10 +70,10 @@ public class AI_Tank : MonoBehaviour
                     Debug.DrawRay(frontTankRaycastPosition.transform.position, frontTankRaycastPosition.transform.TransformDirection(Vector3.forward) * hit.distance, playerCollison);  
                 }
 
-                if ((hit.transform.gameObject.layer == environmentLayer))
+                if ((hit.transform.gameObject.layer == buildingsLayer) || (hit.transform.gameObject.layer == boundaryLayer))
                 {
                     Debug.Log("Hit environment");
-                    Debug.DrawRay(frontTankRaycastPosition.transform.position, frontTankRaycastPosition.transform.TransformDirection(Vector3.forward) * hit.distance, environmentCollision);
+                    Debug.DrawRay(frontTankRaycastPosition.transform.position, frontTankRaycastPosition.transform.TransformDirection(Vector3.forward) * hit.distance, buildingsCollision);
                     UseNav();
                     //InrangeOfPlayer();
                     

@@ -9,6 +9,7 @@ TagManager:
   - Mud
   - Enemy
   - Obstacles
+  - River
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - 
   - Player
   - Enemy
-  - Environment
-  - 
+  - Buildings
+  - Boundary
   - 
   - 
   - 

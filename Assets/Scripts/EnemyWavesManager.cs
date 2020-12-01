@@ -63,7 +63,7 @@ public class EnemyWavesManager : MonoBehaviour
             //currentTimeLeft = timeLimit - (Time.time - startingTime);
             currentTimeLeft -= 1 * Time.deltaTime;
             timerTextTMP.text = currentTimeLeft.ToString("0");
-            Debug.Log(currentTimeLeft);
+            //Debug.Log(currentTimeLeft);
             if(currentTimeLeft <= 0.1 && !spawnAI)
             {
                 isCountdownActive = false;
@@ -73,12 +73,6 @@ public class EnemyWavesManager : MonoBehaviour
             }
         }
     }
-
-    public void InitialWave()
-    {
-        
-    }
-
     void SpawnEnemies()
     {
         //newWavePanel.SetActive(false);
