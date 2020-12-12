@@ -10,8 +10,6 @@ public class EnvironmentCharcteristicsSetter : MonoBehaviour
     public TextMeshProUGUI startingTownAndYearTMP;
     string chosenTownName, chosenYear;
     public string chosenLocationAndYear;
-
-    public 
     void Start()
     {
         chosenTownName = townNames[Random.Range(0, townNames.Length)];
